@@ -1,0 +1,50 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+    id "com.google.gms.google-services"
+}
+
+android {
+    namespace = "com.myapplication.student_registration_app_firebase"
+    compileSdk = 34 // Replace with your target compile SDK version
+    ndkVersion = "25.2.9519653" // Match your NDK version
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    defaultConfig {
+        applicationId = "com.myapplication.student_registration_app_firebase"
+        minSdk = 21 // Replace with your app's minimum supported SDK
+        targetSdk = 34 // Match your compile SDK version
+        versionCode = 1
+        versionName = "1.0.0"
+    }
+
+    buildTypes {
+        release {
+            // Disable shrinking of unused resources
+            shrinkResources false
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.debug
+        }
+    }
+}
+
+flutter {
+    source = "../.."
+}
+
+dependencies {
+    // Firebase dependencies
+    implementation platform("com.google.firebase:firebase-bom:33.6.0")
+    implementation "com.google.firebase:firebase-analytics-ktx"
+    // Add other Firebase dependencies as needed
+}
